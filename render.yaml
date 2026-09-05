@@ -21,8 +21,9 @@ services:
         sync: false        # You will paste your secret MongoDB URI in the Render UI
 
   # 2. The React Frontend Static Site
-  - type: static
+  - type: web
     name: mern-frontend
+    runtime: static 
     rootDir: frontend       # Anchors this service to the frontend folder
     buildCommand: npm install && npm run build
     staticPublishPath: dist # Set to 'build' if using Create-React-App
