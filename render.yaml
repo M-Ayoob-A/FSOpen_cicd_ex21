@@ -1,0 +1,24 @@
+services:
+  # 1. The Express Backend Web Service
+  - type: web
+    name: mern-backend
+    runtime: node
+    rootDir: backend        # Anchors this service to the backend folder
+    buildCommand: npm install
+    startCommand: node index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        sync: false        # You will paste your secret MongoDB URI in the Render UI
+
+  # 2. The React Frontend Static Site
+  - type: web
+    name: mern-frontend
+    runtime: node
+    rootDir: frontend       # Anchors this service to the frontend folder
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist # Set to 'build' if using Create-React-App
+    envVars:
+      - key: VITE_API_URL
+        value: https://mern-backend.onrender.com # Point this to your backend Render URL
