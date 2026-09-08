@@ -56,7 +56,7 @@ jobs:
           description: "[Link to commit](${{ github.event.head_commit.url }})"
           color: 0x008000
   tag_release:
-    needs: [test_and_build, deployment]
+    needs: deployment
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' && ! contains( join(github.event.commits.*.message), '#skip') }}
     steps:
